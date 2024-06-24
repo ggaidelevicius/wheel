@@ -1,0 +1,55 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	border-radius: var(--mantine-radius-sm);
+	overflow: hidden;
+	max-width: 400px;
+	width: 100%;
+}
+
+.root {
+	display: flex;
+	flex-direction: row;
+	gap: 2.5rem;
+	align-items: center;
+	border-radius: 0;
+	padding: 0.75rem 1.25rem;
+	justify-content: space-between;
+
+	+ .root {
+		border-top: 1px solid var(--mantine-color-dark-4);
+	}
+}
+
+.text {
+	font-variant: all-small-caps;
+	padding: 0.75rem;
+	user-select: none;
+	border-radius: var(--mantine-radius-sm);
+	cursor: pointer;
+	transition: background-color 0.075s ease-out;
+}
+
+.text:hover {
+	background-color: var(--mantine-color-dark-4);
+}
+
+.weight {
+	display: flex;
+	align-items: center;
+	user-select: none;
+	margin-left: auto;
+	border-radius: var(--mantine-radius-sm);
+	cursor: pointer;
+	padding: 0.75rem;
+	transition: background-color 0.075s ease-out;
+}
+
+.weight:hover {
+	background-color: var(--mantine-color-dark-4);
+}
+
+.actions {
+	display: flex;
+	gap: 0.5rem;
+}
