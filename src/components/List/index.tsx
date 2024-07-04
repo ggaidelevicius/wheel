@@ -1,14 +1,16 @@
 'use client'
 
 import { Card, ScrollArea, Text, Button, TextInput } from '@mantine/core'
-import { IconWeight } from '@tabler/icons-react'
+import { IconCirclePlus, IconWeight } from '@tabler/icons-react'
 import type { Place } from '../Selector'
 import styles from './styles.module.css'
 import { getWeightedRandomSelection } from '@/lib/helpers/selector'
 import { useEffect, useRef, useState } from 'react'
+import classnames from 'classnames'
 
 export const List = ({ wheel }: { wheel: Place[] }) => {
 	const [entries, setEntries] = useState(wheel)
+	const [rolling, setRolling] = useState<boolean>(false)
 	const [editingTitle, setEditingTitle] = useState<undefined | string>()
 	const [editingWeighting, setEditingWeighting] = useState<undefined | string>()
 
@@ -28,6 +30,7 @@ export const List = ({ wheel }: { wheel: Place[] }) => {
 
 	const handleClick = () => {
 		const result = getWeightedRandomSelection(wheel)
+		// setRolling(true)
 		console.log(result)
 	}
 
@@ -43,16 +46,17 @@ export const List = ({ wheel }: { wheel: Place[] }) => {
 	}
 
 	return (
-		<div className={styles.container}>
+		<div className={classnames({ [styles.container]: true, [styles.rolling]: rolling })}>
 			<Card
 				className={styles.root}
 				shadow="xs"
-				style={{ zIndex: '1', padding: '1.5rem 2rem' }}
+				style={{ zIndex: '1', padding: '1.5rem 2rem', borderRadius: 'var(--mantine-radius-sm) var(--mantine-radius-sm) 0 0' }}
 			>
 				<Text fw={700}>Entry</Text>
+				{/* <IconCirclePlus stroke={2} size={32} /> */}
 				<IconWeight stroke={2.5} size={20} />
 			</Card>
-			<ScrollArea h={300}>
+			<ScrollArea h={300} style={{ borderRadius: '0 0 var(--mantine-radius-sm) var(--mantine-radius-sm)' }}>
 				{entries
 					.sort((a, b) => a.title.localeCompare(b.title))
 					.map((entry) => (
@@ -104,7 +108,7 @@ export const List = ({ wheel }: { wheel: Place[] }) => {
 						</Card>
 					))}
 			</ScrollArea>
-			<Button onClick={handleClick}>roll</Button>
+			<Button onClick={handleClick} style={{ marginTop: '1rem' }}>Spin</Button>
 		</div>
 	)
 }
