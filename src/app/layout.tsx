@@ -1,6 +1,7 @@
 import { ColorSchemeScript, createTheme, MantineProvider } from '@mantine/core'
 import '@mantine/core/styles.css'
 import './styles.css'
+import { SignInButton } from '@/lib/db/firebase/SignIn'
 
 const theme = createTheme({
 	colors: {
@@ -19,7 +20,7 @@ const theme = createTheme({
 	},
 })
 
-export default function RootLayout({
+export default function RootLayout ({
 	children,
 }: {
 	children: React.ReactNode
@@ -32,6 +33,7 @@ export default function RootLayout({
 			<body>
 				<MantineProvider defaultColorScheme="dark" theme={theme}>
 					{children}
+					<SignInButton />
 				</MantineProvider>
 			</body>
 		</html>
