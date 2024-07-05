@@ -1,14 +1,12 @@
 'use client'
 
 import { Button } from '@mantine/core'
-import { OAuthProvider, getAuth, signInWithPopup } from 'firebase/auth'
-import type { FC } from 'react'
-import { app } from '.'
+import { OAuthProvider, signInWithPopup } from 'firebase/auth'
+import { auth } from '.'
 
-const auth = getAuth(app)
 const provider = new OAuthProvider('google.com')
 
-export const SignInButton: FC<{}> = () => {
+export const SignInButton = () => {
   const handleClick = async () => {
     const { error } = await signInUser()
     if (error) {
@@ -40,7 +38,7 @@ export const SignInButton: FC<{}> = () => {
   )
 }
 
-const signInUser = async () => {
+export const signInUser = async () => {
   let result = null,
     error = null
   try {
@@ -51,5 +49,3 @@ const signInUser = async () => {
 
   return { result, error }
 }
-
-export default signInUser

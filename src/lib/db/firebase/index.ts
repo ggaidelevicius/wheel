@@ -2,6 +2,7 @@
 
 import type { Place } from '@/components/Selector'
 import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
 import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore/lite'
 
 const firebaseConfig = {
@@ -14,8 +15,8 @@ const firebaseConfig = {
 }
 
 export const app = initializeApp(firebaseConfig)
-
 export const db = getFirestore(app)
+export const auth = getAuth(app)
 
 export const getWheel = async (id: string) => {
 	try {

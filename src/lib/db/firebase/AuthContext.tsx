@@ -1,12 +1,10 @@
 'use client'
 
 import type { User } from 'firebase/auth'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import type { FC, ReactNode } from 'react'
+import { onAuthStateChanged } from 'firebase/auth'
+import type { ReactNode } from 'react'
 import { createContext, useContext, useEffect, useState } from 'react'
-import { app } from './index'
-
-const auth = getAuth(app)
+import { auth } from '.'
 
 interface AuthContextType {
   user: User | null
@@ -16,7 +14,7 @@ export const AuthContext = createContext<AuthContextType>({ user: null })
 
 export const useAuthContext = () => useContext(AuthContext)
 
-export const AuthContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
+export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
